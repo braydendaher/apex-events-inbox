@@ -160,9 +160,10 @@ Go wide before you go deep. Six thorough metros beat twenty shallow ones.
 - Open to the public. Skip anything members-only or invitation-only.
 - Skip dealership sales events dressed up as car shows.
 - Recurring series are welcome. Submit the NEXT occurrence and set
-  `recurrence` to `weekly` or `monthly`. The app rolls it forward, and it
+  `recurrence` to one of `weekly`, `biweekly`, `monthly` or `annual`, or
+  `none` for a one-off. The app rolls a series forward on its own, and it
   refuses a second listing from the same organizer in the same city, so submit
-  a series once.
+  a series once and let the app keep it alive.
 
 ## Do not repeat yourself
 
@@ -216,8 +217,15 @@ Rules for the fields:
 - `tz` is an IANA zone such as `America/Chicago`, never an offset like `-05:00`.
 - `date` is `YYYY-MM-DD` and `start` and `end` are 24 hour `HH:MM`, all in the
   event's own local time. Do not convert to UTC.
-- `type` is one of `meet`, `show`, `cruise`, `track`, `rally`, `shoot`. Use
-  `meet` if unsure.
+- `type` is one of exactly `meet`, `cruise`, `track`, `off_road`, `moto`,
+  `shoot`. Nothing else is accepted, and anything unrecognised is silently
+  turned into `meet`, so do not invent a value. There is deliberately no
+  "show" type: a car show, a cars and coffee and a club night are all `meet`.
+  `shoot` means a photo shoot, not a range day.
+- `vehicle_category` is one of `all_vehicles`, `exotics`, `euro`, `american`,
+  `jdm`, `classic_vintage`, `trucks_offroad`, `motorcycles`, `track_cars`,
+  `other`. Use `all_vehicles` unless the event is genuinely restricted to one
+  kind of car.
 - `address` should be a full street address wherever you can find one. The app
   geocodes it and refuses anything that will not resolve, so a street address is
   the difference between an event getting in and getting held.
