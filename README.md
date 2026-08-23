@@ -60,5 +60,19 @@ is published:
 - epochs recomputed from the local time plus the IANA zone, so DST is right
 - the address geocoded, and an event that will not geocode is refused
 - deduped against what is already on the app, including recurring series
+- **every source link opened, and the page has to actually mention the event,
+  venue or organizer**
+
+That last one is the reason this arrangement is safe. The scout cannot open web
+pages at all, so it can find candidates but cannot confirm them, and every
+other check above passes happily on a well formed event that was never real: a
+plausible address geocodes, and an invented URL is still a valid URL. The
+Worker has no such restriction, so it does the one check the scout cannot.
+
+An unreachable link counts as unproven, not as permission. Plenty of real
+venues answer a datacentre IP with a 403, so those events are held rather than
+published on the benefit of the doubt.
 
 Anything that fails is held with a reason rather than dropped silently.
+
+`SCOUT_PROMPT.md` holds the prompt the routine runs.
