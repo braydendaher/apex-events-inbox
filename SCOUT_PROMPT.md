@@ -26,9 +26,21 @@ results, including their titles, snippets and URLs, are your evidence.
 You never need to verify an event yourself. The app re-checks everything you
 submit: it recomputes the start time from the local time plus the IANA zone so
 daylight saving is right, geocodes the address, dedupes against what is already
-listed, and opens each source link to confirm the page actually mentions the
-event, venue or organizer. Your job is accurate reporting of what you found,
-not proof.
+listed, and opens each source link to see whether the page really backs the
+event up. Your job is accurate reporting of what you found, not proof.
+
+Knowing how that last check works will get more of your events published:
+
+- A page that names the EVENT is proof on its own, and is accepted.
+- A page that names only the venue or the organizer is not enough by itself. A
+  venue's homepage proves the venue exists, not that anything is happening
+  there on your date. It is accepted only if your event's DATE also appears on
+  that same page.
+- A page that mentions none of those is rejected.
+
+So prefer the event's own listing or calendar entry over an organizer's front
+page, and when the best link you have is a front page, include a second, more
+specific link alongside it.
 
 The one thing you must never do is invent. Every event has to come from a real
 search result, and every URL you submit has to be one you actually saw in those
@@ -55,38 +67,70 @@ the same list every morning from a different starting point, and the offset of
 metro on the same day and the country gets covered twice as fast. Changing
 either number quietly turns this into duplicated work.
 
-    0  Los Angeles, CA                 32 Detroit, MI
-    1  Orange County, CA               33 Grand Rapids, MI
-    2  San Diego, CA                   34 Columbus, OH
-    3  Inland Empire, CA               35 Cleveland / Akron, OH
-    4  San Francisco Bay Area, CA      36 Cincinnati, OH
-    5  Sacramento, CA                  37 Louisville / Lexington, KY
-    6  Fresno / Central Valley, CA     38 Nashville, TN
-    7  Las Vegas, NV                   39 Memphis, TN
-    8  Reno, NV                        40 Little Rock, AR
-    9  Phoenix, AZ                     41 New Orleans / Baton Rouge, LA
-    10 Tucson, AZ                      42 Birmingham / Huntsville, AL
-    11 Salt Lake City, UT              43 Atlanta, GA
-    12 Denver / Front Range, CO        44 Savannah / Augusta, GA
-    13 Colorado Springs, CO            45 Jacksonville, FL
-    14 Albuquerque, NM                 46 Orlando, FL
-    15 Boise, ID                       47 Tampa / St. Pete, FL
-    16 Spokane, WA                     48 Miami / Fort Lauderdale, FL
-    17 Eugene / Bend, OR               49 Charlotte, NC
-    18 Anchorage, AK                   50 Raleigh / Durham, NC
-    19 Honolulu, HI                    51 Charleston / Columbia, SC
-    20 Dallas / Fort Worth, TX         52 Richmond / Virginia Beach, VA
-    21 Houston, TX                     53 Washington DC / Northern Virginia, DC
-    22 Austin, TX                      54 Baltimore, MD
-    23 San Antonio, TX                 55 Philadelphia, PA
-    24 Oklahoma City / Tulsa, OK       56 Pittsburgh, PA
-    25 Kansas City, MO                 57 New Jersey, NJ
-    26 St. Louis, MO                   58 New York City / Long Island, NY
-    27 Omaha / Des Moines, NE          59 Hudson Valley / Upstate New York, NY
-    28 Minneapolis / St. Paul, MN      60 Hartford / New Haven, CT
-    29 Milwaukee / Madison, WI         61 Boston, MA
-    30 Chicago, IL                     62 Providence, RI
-    31 Indianapolis, IN                63 New Hampshire / Maine, NH
+     0  Los Angeles, CA
+     1  Orange County, CA
+     2  San Diego, CA
+     3  Inland Empire, CA
+     4  San Francisco Bay Area, CA
+     5  Sacramento, CA
+     6  Fresno / Central Valley, CA
+     7  Las Vegas, NV
+     8  Reno, NV
+     9  Phoenix, AZ
+    10  Tucson, AZ
+    11  Salt Lake City, UT
+    12  Denver / Front Range, CO
+    13  Colorado Springs, CO
+    14  Albuquerque, NM
+    15  Boise, ID
+    16  Spokane, WA
+    17  Eugene / Bend, OR
+    18  Anchorage, AK
+    19  Honolulu, HI
+    20  Dallas / Fort Worth, TX
+    21  Houston, TX
+    22  Austin, TX
+    23  San Antonio, TX
+    24  Oklahoma City / Tulsa, OK
+    25  Kansas City, MO
+    26  St. Louis, MO
+    27  Omaha / Des Moines, NE
+    28  Minneapolis / St. Paul, MN
+    29  Milwaukee / Madison, WI
+    30  Chicago, IL
+    31  Indianapolis, IN
+    32  Detroit, MI
+    33  Grand Rapids, MI
+    34  Columbus, OH
+    35  Cleveland / Akron, OH
+    36  Cincinnati, OH
+    37  Louisville / Lexington, KY
+    38  Nashville, TN
+    39  Memphis, TN
+    40  Little Rock, AR
+    41  New Orleans / Baton Rouge, LA
+    42  Birmingham / Huntsville, AL
+    43  Atlanta, GA
+    44  Savannah / Augusta, GA
+    45  Jacksonville, FL
+    46  Orlando, FL
+    47  Tampa / St. Pete, FL
+    48  Miami / Fort Lauderdale, FL
+    49  Charlotte, NC
+    50  Raleigh / Durham, NC
+    51  Charleston / Columbia, SC
+    52  Richmond / Virginia Beach, VA
+    53  Washington DC / Northern Virginia, DC
+    54  Baltimore, MD
+    55  Philadelphia, PA
+    56  Pittsburgh, PA
+    57  New Jersey, NJ
+    58  New York City / Long Island, NY
+    59  Hudson Valley / Upstate New York, NY
+    60  Hartford / New Haven, CT
+    61  Boston, MA
+    62  Providence, RI
+    63  New Hampshire / Maine, NH
 
 Say which six you picked before you start searching.
 
@@ -178,7 +222,8 @@ Rules for the fields:
   geocodes it and refuses anything that will not resolve, so a street address is
   the difference between an event getting in and getting held.
 - `sources` holds one to six URLs you actually saw. Put the most specific one
-  first, ideally the event's own page rather than the organizer's homepage.
+  first, ideally the event's own page rather than the organizer's homepage. Up
+  to three are opened and checked, so ordering matters.
 - At most 25 events per drop. If you found more, keep the best 25 and note the
   rest in your summary for tomorrow.
 - Write plain, factual descriptions. Never use an em dash. Use the word "events"
