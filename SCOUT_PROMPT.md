@@ -38,16 +38,22 @@ and it is the single failure mode this whole pipeline exists to prevent.
 
 ## Which part of the country to cover today
 
-Work six metros. Take today's day-of-year as N and compute:
+Work six metros, chosen by the date so coverage rotates instead of drifting to
+the same cities. Let `D` be the number of days from 2026-01-01 to today, then:
 
-    start = ((N * 6) + 32) mod 64
+    start = ((739617 + D) * 6 + 32) mod 64
 
-Then take the six metros at indices `start`, `start+1` ... `start+5`, wrapping
-past 63 back to 0.
+Take the six metros at indices `start`, `start+1` ... `start+5`, wrapping past
+63 back to 0.
 
-The offset of 32 matters. A separate job already sweeps this same list from the
-other side each morning, so this offset keeps you on metros it is not covering
-today and doubles how fast the country gets swept. Do not drop it.
+Worked example: on 2026-08-23, `D` is 234, so `start` is 34 and you would cover
+indices 34 to 39, meaning Columbus through Memphis.
+
+Both numbers matter. The 739617 lines this up with a separate sweep that works
+the same list every morning from a different starting point, and the offset of
+32 puts you exactly half a list away from it, so the two never pick the same
+metro on the same day and the country gets covered twice as fast. Changing
+either number quietly turns this into duplicated work.
 
     0  Los Angeles, CA                 32 Detroit, MI
     1  Orange County, CA               33 Grand Rapids, MI
