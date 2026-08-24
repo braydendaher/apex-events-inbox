@@ -54,16 +54,21 @@ and it is the single failure mode this whole pipeline exists to prevent.
 
 ## Which part of the country to cover today
 
-Work six metros, chosen by the date so coverage rotates instead of drifting to
+Work TEN metros, chosen by the date so coverage rotates instead of drifting to
 the same cities. Let `D` be the number of days from 2026-01-01 to today, then:
 
     start = ((739617 + D) * 6 + 32) mod 64
 
-Take the six metros at indices `start`, `start+1` ... `start+5`, wrapping past
+Take the ten metros at indices `start`, `start+1` ... `start+9`, wrapping past
 63 back to 0.
 
 Worked example: on 2026-08-23, `D` is 234, so `start` is 34 and you would cover
-indices 34 to 39, meaning Columbus through Memphis.
+indices 34 to 43, meaning Columbus through Atlanta.
+
+The multiplier stays 6 even though you take ten. That is not a typo: the 6 is
+what keeps this window a fixed half-list away from the other sweep's window
+every single day. Widening your window is safe; changing the multiplier or the
+offset is what would make the two sweeps collide.
 
 Both numbers matter. The 739617 lines this up with a separate sweep that works
 the same list every morning from a different starting point, and the offset of
@@ -140,20 +145,35 @@ Say which six you picked before you start searching.
 
 ## How to search
 
-For each metro run several searches, not one. Vary the shape, because organizers
-describe the same thing in different words:
+Dig into each metro properly. A metro is not one city name: it is the core
+city plus its satellite towns, and half the real events live in the suburbs.
+The Atlanta sweep that only searches "Atlanta" misses Norcross, Hapeville and
+Hampton, which is where the actual events were.
 
-- `cars and coffee <metro> <current month> <year>`
-- `car show <metro> <next month> <year>`
-- `car club event <metro> upcoming`
-- `<metro> cruise in <year>`
-- `track day OR autocross <metro> <current month>`
-- `<metro> car meetup calendar`
+For each metro:
 
-Also search the venues and organizers that show up, since a club page often
-lists a whole season at once.
+1. Search the core city with varied shapes, because organizers describe the
+   same thing in different words:
+   - `cars and coffee <city> <current month> <year>`
+   - `car show <city> <next month> <year>`
+   - `car club event <city> upcoming`
+   - `<city> cruise night <year>` and `<city> cruise in <year>`
+   - `track day OR autocross OR HPDE <city> <current month>`
+   - `<city> car meetup calendar`
+   - `<city> swap event <year>`
+2. Name three to six of the metro's satellite cities yourself, from your own
+   knowledge of the area, and run the two or three best-fitting shapes against
+   each of them by name.
+3. Search the venues and organizers that keep appearing, since a club or track
+   page often lists a whole season at once. Regional aggregator pages
+   (carcruisefinder, getoutgarage, everfest, local "car culture" calendars)
+   are worth one search each: one hit there can surface a dozen events.
+4. Keep going until a metro runs dry: when two consecutive searches surface
+   nothing you have not already seen, move on. Do not stop at the first two
+   easy finds.
 
-Go wide before you go deep. Six thorough metros beat twenty shallow ones.
+Spending your time unevenly is correct. A dense metro deserves fifteen
+searches; a thin one is honestly done in five.
 
 ## What qualifies
 
@@ -237,7 +257,7 @@ Rules for the fields:
 - `sources` holds one to six URLs you actually saw. Put the most specific one
   first, ideally the event's own page rather than the organizer's homepage. Up
   to three are opened and checked, so ordering matters.
-- At most 25 events per drop. If you found more, keep the best 25 and note the
+- At most 40 events per drop. If you found more, keep the best 40 and note the
   rest in your summary for tomorrow.
 - Write plain, factual descriptions. Never use an em dash. Use the word "events"
   rather than "meets".
