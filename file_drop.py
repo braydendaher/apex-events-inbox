@@ -52,13 +52,19 @@ def extract(text: str) -> dict:
 
 
 def next_id(day: str) -> str:
-    """Today's date plus the next unused run number."""
+    """Today's date plus the next unused number, tagged `manual`.
+
+    Deliberately NOT the scout's own `<date>-runN` shape. If a salvaged drop
+    reused an id the scout had already used, the Worker would see an id it has
+    handled and ignore the file completely, with nothing logged and no error
+    anywhere. A separate namespace makes that collision impossible.
+    """
     drops = os.path.join(HERE, "drops")
     existing = set(os.listdir(drops)) if os.path.isdir(drops) else set()
     n = 1
-    while f"events-{day}-run{n}.json" in existing:
+    while f"events-{day}-manual{n}.json" in existing:
         n += 1
-    return f"{day}-run{n}"
+    return f"{day}-manual{n}"
 
 
 def git(*args: str) -> None:

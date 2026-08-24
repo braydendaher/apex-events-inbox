@@ -180,8 +180,9 @@ has already seen wastes the run.
 Write BOTH files:
 
 - `latest.json`, overwritten, which is what the app reads
-- `drops/events-<today's date>.json`, an identical copy, which is your memory
-  for tomorrow
+- `drops/events-<the id you used>.json`, an identical copy, which is your
+  memory for tomorrow. Naming it after the id keeps a second run on the same
+  day from overwriting the first
 
 Shape, exactly:
 
