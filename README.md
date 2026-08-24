@@ -76,3 +76,17 @@ published on the benefit of the doubt.
 Anything that fails is held with a reason rather than dropped silently.
 
 `SCOUT_PROMPT.md` holds the prompt the routine runs.
+
+## When the scout cannot push
+
+The routine's sandbox may only have READ access here (clone and ls-remote work,
+push and the API do not). The prompt is written so that this costs nothing: the
+scout still runs the full search and prints the drop in its run output between
+`----- DROP JSON BEGIN -----` and `----- DROP JSON END -----`.
+
+Paste that output through the helper and it is filed properly, with a fresh id:
+
+    python file_drop.py paste.txt
+
+The real fix is to give the routine push access to this repo in the scheduled
+task's own settings, at which point the helper is not needed.
