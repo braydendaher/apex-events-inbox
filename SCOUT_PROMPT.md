@@ -23,6 +23,10 @@ You have WebSearch. You do NOT have working page fetches in this environment,
 so do not try to open event pages and do not treat that as a failure. Search
 results, including their titles, snippets and URLs, are your evidence.
 
+Your repo access may also be read-only. That is survivable and is handled at
+the end of this prompt: you still do the full search and print the results.
+Never treat a write problem as a reason to skip the work.
+
 You never need to verify an event yourself. The app re-checks everything you
 submit: it recomputes the start time from the local time plus the IANA zone so
 daylight saving is right, geocodes the address, dedupes against what is already
@@ -239,10 +243,22 @@ Rules for the fields:
 
 ## Finish
 
-Commit both files and push to `main`.
+**Do the search before you worry about writing anything.** Do not check your
+repo access first and stop early if it looks unavailable. The search results
+are the valuable part of this run and they are cheap to hand over by other
+means; a run that skipped the search because writing might fail has thrown
+away the only thing that was hard to produce.
 
-If the push fails for any reason, print the complete JSON in your run output so
-it is not lost, and say clearly that the push failed.
+So, in this order:
+
+1. Search and assemble the JSON. Always.
+2. Print the complete JSON in your run output, between two lines reading
+   `----- DROP JSON BEGIN -----` and `----- DROP JSON END -----`. Do this
+   every time, whether or not the next step works, so the day's findings
+   survive on their own.
+3. Then try to write `latest.json` and `drops/events-<date>.json`, commit, and
+   push to `main`. If the push fails, say so plainly in one line, including the
+   error, and stop. Do not retry in a loop and do not try to route around it.
 
 Then report: which six metros you covered, how many events you are submitting,
 how many you rejected and why, and anything that looked promising but that you
