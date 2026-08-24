@@ -11,10 +11,10 @@ its next half-hourly cron exactly as if the scout had pushed it.
     python file_drop.py                  # or paste on stdin, then Ctrl+Z Enter
 
 It accepts the raw run output with the BEGIN/END markers around the JSON, or a
-bare JSON object. The id is always rewritten to today's date plus the next free
-run number, because the Worker keys "already handled" off the id and silently
-ignores one it has seen before. Reusing an id is the one mistake that fails
-without any visible error.
+bare JSON object. The id is always rewritten, into a `manual` namespace of its
+own, because the Worker keys "already handled" off the id and silently ignores
+one it has seen before. Reusing an id is the one mistake here that fails
+without any visible error at all.
 
 Nothing here trusts the content. Every event still goes through the Worker's
 own gates: the publish window, DST-correct epochs, geocoding, dedupe, and the
@@ -24,7 +24,6 @@ event up.
 import datetime as dt
 import json
 import os
-import re
 import subprocess
 import sys
 
